@@ -7,7 +7,7 @@
             "properties":  {
                 "name": {
                     "type": "string",
-                    "description": "the name of the Gen AI Tool"
+                    "description": "the name of the real estate company"
                 }
             },
             "required": ["name"]
@@ -15,7 +15,7 @@
     },
     "get_real_estate_listings": {
         "name": "get_real_estate_listings",
-        "description": "Get the list of real-state properties from the SQLite database",
+        "description": "Get the list of real-state properties from the listings file",
         "parameters": {
             "type": "object",
             "properties": {},

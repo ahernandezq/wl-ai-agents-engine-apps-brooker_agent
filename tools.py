@@ -29,7 +29,10 @@ def get_real_estate_info_by_name(name):
 
 # Function to Get the list of AI tools from the SQLite database
 def get_real_estate_listings():
-    return _run_query("SELECT * FROM ai_tools order by name")
+    file = open("./applications/broker_agent/datasets/listings.json")
+    data = json.load(file)
+    file.close()
+    return data
 
 # function to insert a new tool into te DB
 def insert_real_estate_info(name, link, category, description):
