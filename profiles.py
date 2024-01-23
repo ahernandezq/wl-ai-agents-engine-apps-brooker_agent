@@ -53,7 +53,7 @@ app_proxy_agent_config = {
     "name": "Admin", # Default "ProxyAgent"
     "human_input_mode": "NEVER", # Default NEVER
     "max_consecutive_auto_reply": 5, # default 1
-    "system_message": "Interact with the Director agent to clarify the tasks, reply TERMINATE if the task has been solved", # Optional, but will be better to have some instructions, Default None
+    "system_message": "Interact with the Broker agent to clarify the tasks, reply TERMINATE if the task has been solved", # Optional, but will be better to have some instructions, Default None
     "code_execution_config": {"last_n_messages": 3, "work_dir": f"{app_base_dir}/run_code"}, # Optional, Default None, When the proxy need to run code, sample: {"last_n_messages": 3, "work_dir": "run_code"}   => work_dir must be inside the app and provide the full path
     "is_termination_msg" : _is_terminate, # Mandatory, this sample terminate the execution when the agents messages ends in TERMINATE
     "llm_config": {
@@ -84,14 +84,14 @@ engine_config = {
 # https://platform.openai.com/docs/assistants/tools
 agents_config = [
     {
-        "name": "Director",
-        "id": "Director",
+        "name": "Broker Agent",
+        "id": "Broker",
         "instructions": broker_profile,
         "function_map": {
-            'get_ai_tool_by_name': tools.get_ai_tool_by_name, 
-            'get_all_ai_tools_records': tools.get_all_ai_tools_records, 
-            'insert_ai_tool': tools.insert_ai_tool,
-            'update_ai_tool_record': tools.update_ai_tool_record
+            'get_real_estate_info_by_name': tools.get_real_estate_info_by_name, 
+            'get_real_estate_listings': tools.get_real_estate_listings, 
+            'insert_real_estate_info': tools.insert_real_estate_info,
+            'update_real_estate_info': tools.update_real_estate_info
         },
         "llm_config": {
             "timeout": 600,
@@ -100,19 +100,19 @@ agents_config = [
             "tools": [
                 {
                     "type": "function",
-                    "function": app_fns["get_ai_tool_by_name"]
+                    "function": app_fns["get_real_estate_info_by_name"]
                 },
                 {
                     "type": "function",
-                    "function": app_fns["get_all_ai_tools_records"]
+                    "function": app_fns["get_real_estate_listings"]
                 },
                 {
                     "type": "function",
-                    "function": app_fns["insert_ai_tool"]
+                    "function": app_fns["insert_real_estate_info"]
                 },
                 {
                     "type": "function",
-                    "function": app_fns["update_ai_tool_record"]
+                    "function": app_fns["update_real_estate_info"]
                 }
             ]
         }

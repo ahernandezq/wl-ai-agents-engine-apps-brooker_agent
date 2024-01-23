@@ -32,10 +32,10 @@ def get_real_estate_listings():
     return _run_query("SELECT * FROM ai_tools order by name")
 
 # function to insert a new tool into te DB
-def insert_real_estate_info(name, link, ecosystem, category, enterprise_categories, license, description):
-    sql = '''INSERT INTO ai_tools (name, link, ecosystem, category, enterprise_categories, license, description, last_search) VALUES (? , ? , ? , ? , ? , ? , ? , datetime() )'''
+def insert_real_estate_info(name, link, category, description):
+    sql = '''INSERT INTO ai_tools (name, link, category, description, last_search) VALUES (? , ? , ? , ?  , datetime() )'''
     
-    fields = (name, link, ecosystem, category, enterprise_categories, license, description)
+    fields = (name, link, category, description)
     con = sqlite3.connect(db_name)
     cur = con.cursor()
     cur.execute(sql, fields)
@@ -44,19 +44,16 @@ def insert_real_estate_info(name, link, ecosystem, category, enterprise_categori
     return True
 
 # Function for update airtable records
-def update_real_estate_info(id, name, link, ecosystem, category, enterprise_categories, license, description):
+def update_real_estate_info(id, name, link, category, description):
     sql = '''UPDATE ai_tools 
               SET name = ? ,
                   link = ? ,
-                  ecosystem = ? ,
                   category = ? ,
-                  enterprise_categories = ? 
-                  license = ? ,
                   description = ? ,
                   last_search = datetime()  
               WHERE id = ?'''
     
-    fields = (name, link, ecosystem, category, enterprise_categories, license, description, id)
+    fields = (name, link, category, description, id)
     con = sqlite3.connect(db_name)
     cur = con.cursor()
     cur.execute(sql, fields)
