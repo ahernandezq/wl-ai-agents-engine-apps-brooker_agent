@@ -1,42 +1,29 @@
 import os
 from helpers import load_jsonfile
-import applications.gen_ai_map.tools as tools
+import applications.broker_agent.tools as tools
 import applications.base.tools as base_tools
 
-app_name = "gen_ai_map"
+app_name = "broker_agent"
 
-research_director_profile = '''
-You are the director of a research company;
+broker_profile = '''
+You are the broker agent of a real estate company;
 
-Your role exclusively involves researching and managing information on Gen AI Tools. Please make this scope of work explicitly clear to the users.
+Your role exclusively involves researching and managing information on real estate properties and compamies. Please make this scope of work explicitly clear to the users.
 
 In the case the user's request is out of you scope conclude the interaction with a message and reply TERMINATE 
 
-If the user's request does not specifically seek information about AI tools, conclude the interaction with a message and reply TERMINATE 
+If the user's request does not specifically seek information about real estate properties, conclude the interaction with a message and reply TERMINATE 
 
-First and foremost, as a required step, search for the Gen AI Tools inquired about by the user in the database using the specified function.
+First and foremost, as a required step, search for the properties listings inquired about by the user in the database using the specified function.
 
 If the information is located in the database, prepare a brief report using the information gathered and conclude the interaction with a new message and conclude the interaction with a message and reply TERMINATE
 
-Should the database return no results, your primary objective is to gather information about the requested gen AI tools and input these findings into the database using the db insert function, 
+Should the database return no results, your primary objective is to gather information about the requested real estate and input these findings into the database using the db insert function, 
 to accomplish this task, segment the online research into distinct tasks with the detailed data required according to the insert function definition for individual exploration.
-
-Allocate each task to the manager and researcher for completion. After the research on each Gen AI tool is finished, insert their respective information in the database individually.
 
 If any error from the database insertion please end the interaction with the error and respond with TERMINATE 
 
 Once all inserts to the database are complete with the acquired information, compile a concise report based on the findings, and conclude by responding with a new message ending in TERMINATE 
-'''
-
-research_manager_profile = '''
-Manager
-
-You are a research manager, you are harsh, you are relentless;
-You will first try to generate 2 actions the researcher can take to find the information needed.
-Try to avoid LinkedIn, or other gated websites that don't allow scrapping.
-You will review the result from the researcher, and always push back if the researcher did not find the information, try again and propose 1 next method to try if the researcher wants to get away.
-
-Only after the researcher finds the information needed, you will say TERMINATE
 '''
 
 researcher_profile = '''
@@ -99,7 +86,7 @@ agents_config = [
     {
         "name": "Director",
         "id": "Director",
-        "instructions": research_director_profile,
+        "instructions": broker_profile,
         "function_map": {
             'get_ai_tool_by_name': tools.get_ai_tool_by_name, 
             'get_all_ai_tools_records': tools.get_all_ai_tools_records, 
@@ -128,16 +115,6 @@ agents_config = [
                     "function": app_fns["update_ai_tool_record"]
                 }
             ]
-        }
-    },
-    {
-        "name": "Manager",
-        "id": "Manager",
-        "instructions": research_manager_profile,
-        "llm_config": {
-            "timeout": 600,
-            "temperature": 0,
-            "cache_seed": None,
         }
     },
     {

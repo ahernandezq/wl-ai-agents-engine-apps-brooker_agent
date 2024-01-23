@@ -1,7 +1,7 @@
 {
-    "get_ai_tool_by_name": {
-        "name": "get_ai_tool_by_name",
-        "description": "Get the information of a Gen AI Tool by name stored in the database",
+    "get_real_estate_info_by_name": {
+        "name": "get_real_estate_info_by_name",
+        "description": "Get the information of a real state company by name stored in the database",
         "parameters": {
             "type": "object",
             "properties":  {
@@ -13,108 +13,73 @@
             "required": ["name"]
         }
     },
-    "get_all_ai_tools_records": {
-        "name": "get_all_ai_tools_records",
-        "description": "Get the list of all AI tools from the SQLite database",
+    "get_real_estate_listings": {
+        "name": "get_real_estate_listings",
+        "description": "Get the list of real-state properties from the SQLite database",
         "parameters": {
             "type": "object",
             "properties": {},
             "required": []
         }
     },
-    "insert_ai_tool": {
-        "name": "insert_ai_tool",
+    "insert_real_estate_info": {
+        "name": "insert_real_estate_info",
         "description": "Insert a single record in the SQLite database",
         "parameters": {
             "type": "object",
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "Name of the IA tool"
+                    "description": "Name of the real state company or listing"
                 },
                 "link": {
                     "type": "string",
-                    "description": "URL of the official website of the AI tool"
-                },
-                "ecosystem": {
-                    "type": "string",
-                    "description": "Generative AI Ecosystem Layer and the value only can be one of these: 1. Generative AI Models: Models that generate human-like context using Artificial Intelligence (AI), for example, those that can write ideas or create images, videos, etcetera. 2. Generative AI Cloud Services: Publicly available services or APIs that give users access to Generative AI models. ChatGPT is one example; it provides access via a chatbot interface or API to the GPT models owned by Open AI. 3. Generative AI Mashups: Services that combine multiple models and allow the creation of complex workflows. These Mashups could be developed using Generative AI models; one example could be Toolformer. 4. AI-Native Products and Services: Products or applications that use embedded Generative AI in their features and workflows. The final user sees the benefits of the models but doesn't see how they are implemented. Examples of this could be Notion.AI, Uizard, and GitHub Copilot. 5. Data and Integration Services: Services not exclusive to AI and Generative AI technologies. This layer combines Data Services, APIs, and middleware services to enable building applications with the rest of the components in the ecosystem. This layer builds business logic and data storage, allowing applications to control how data flows into the Generative AI services and produce the best experiences for the end users in the applications."
+                    "description": "URL of the official website of the real state company or listing"
                 },
                 "category": {
                     "type": "string",
-                    "description": "Generative AI Category and the value only can be one of these: 1. Text Generation: AI tools that generate natural language text, such as chatbots, language models, and automated content creation tools. 2. Image and Video Generation: AI tools that generate images, videos, or animations, such as face-swaps, style transfer, and GANs. 3. Music and Sound Generation: AI tools that generate music, sound effects, or voice, such as AI music composers, virtual instruments, and speech synthesis. 4. Game and Virtual World Generation: AI tools that generate game content, virtual environments, or characters, such as procedural content generation, level design, and NPC creation. 5. Data and Simulation Generation: AI tools that generate synthetic data, simulate complex systems or predict future scenarios, such as predictive analytics, digital twins, and generative models for scientific research."
-                },
-                "enterprise_categories": {
-                    "type": "string",
-                    "description": "Enterprise Categories and the value is a listed, comma separated with at least one of these options: 1. Marketing: 1.1 Content Creation: Generative AI tools can help create personalized and engaging content for marketing campaigns, such as product descriptions, ad copy, and social media posts. These tools can analyze data about customer preferences, behavior, and demographics, and generate content that resonates with different segments. 1.2 Image and Video Generation: Generative AI tools can generate visual content, such as images and videos, that align with the brand style and message. These tools can apply style transfer, object detection, and other techniques to create unique and eye-catching visuals that stand out in the crowded digital landscape. 1.3 Customer Segmentation: Generative AI tools can help segment customers based on their behavior, interests, and demographics, and generate targeted marketing messages for each group. These tools can use clustering, decision trees, and other techniques to identify patterns and trends in customer data and create personalized marketing campaigns. 2. Finance: 2.1 Fraud Detection: Generative AI tools can help detect and prevent fraud in financial transactions, such as credit card fraud, money laundering, and insider trading. These tools can use anomaly detection, predictive modeling, and other techniques to identify suspicious activities and alert the relevant authorities. 2.2 Investment Strategy: Generative AI tools can help develop investment strategies that optimize risk and return based on historical data and market trends. These tools can use predictive modeling, portfolio optimization, and other techniques to generate personalized investment plans for individual clients. 2.3 Forecasting: Generative AI tools can help forecast financial performance based on historical data and external factors, such as economic indicators and industry trends. These tools can use time series analysis, regression, and other techniques to generate accurate and reliable predictions of revenue, expenses, and other financial metrics. 3. People Operations: 3.1 Talent Acquisition: Generative AI tools can help identify and attract top talent based on their skills, experience, and cultural fit. These tools can use natural language processing, sentiment analysis, and other techniques to analyze candidate resumes, cover letters, and social media profiles, and generate recommendations for recruiters. 3.2 Employee Engagement: Generative AI tools can help improve employee engagement and satisfaction by generating personalized feedback, recognition, and development plans. These tools can use sentiment analysis, personality assessments, and other techniques to understand employee preferences and generate actionable insights. 3.3 Performance Management: Generative AI tools can help optimize performance management processes by generating personalized performance metrics, goals, and feedback. These tools can use data analytics, machine learning, and other techniques to generate objective and transparent evaluations of employee performance. 4. Developer tools 5. Design tools"
-                },
-                "license": {
-                    "type": "string",
-                    "description": "Type of licensing of the AI tool, can be one of these options: 1. Open Source: Open-source licenses facilitate free and open-source software (FOSS) development. Intellectual property (IP) laws restrict the modification and sharing of creative works. Free and open-source software licenses use these existing legal structures for the inverse purpose of granting freedoms that promote sharing and collaboration. They grant the recipient the right to use the software, examine the source code, modify it, and distribute the modifications. 2. Proprietary: The hallmark of proprietary software licenses is that the software publisher grants the use of one or more copies of software under the end-user license agreement (EULA), but ownership of those copies remains with the software publisher (hence use of the term \"proprietary\"). This feature of proprietary software licenses means that certain rights regarding the software are reserved by the software publisher."
+                    "description": "Indicate wether is a company or a real state listing"
                 },
                 "description": {
                     "type": "string",
-                    "description": "A short summary that describes the AI tool, not more than 500 words"
+                    "description": "A short summary that describes the real state listing or company, not more than 500 words"
                 }
             },
             "required": [
                 "name",
                 "link",
-                "ecosystem",
                 "category",
-                "enterprise_categories",
-                "license",
                 "description"
             ]
         }
     },
-    "update_ai_tool_record": {
-        "name": "update_ai_tool_record",
-        "description": "Update a single record in the SQLite database",
+    "update_real_estate_info": {
+        "name": "update_real_estate_info",
+        "description": "Insert a single record in the SQLite database",
         "parameters": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "the ID of the record"
-                },
                 "name": {
                     "type": "string",
-                    "description": "Name of the IA tool"
+                    "description": "Name of the real state company or listing"
                 },
                 "link": {
                     "type": "string",
-                    "description": "URL of the official website of the AI tool"
-                },
-                "ecosystem": {
-                    "type": "string",
-                    "description": "Generative AI Ecosystem Layer and the value only can be one of these: 1. Generative AI Models: Models that generate human-like context using Artificial Intelligence (AI), for example, those that can write ideas or create images, videos, etcetera. 2. Generative AI Cloud Services: Publicly available services or APIs that give users access to Generative AI models. ChatGPT is one example; it provides access via a chatbot interface or API to the GPT models owned by Open AI. 3. Generative AI Mashups: Services that combine multiple models and allow the creation of complex workflows. These Mashups could be developed using Generative AI models; one example could be Toolformer. 4. AI-Native Products and Services: Products or applications that use embedded Generative AI in their features and workflows. The final user sees the benefits of the models but doesn't see how they are implemented. Examples of this could be Notion.AI, Uizard, and GitHub Copilot. 5. Data and Integration Services: Services not exclusive to AI and Generative AI technologies. This layer combines Data Services, APIs, and middleware services to enable building applications with the rest of the components in the ecosystem. This layer builds business logic and data storage, allowing applications to control how data flows into the Generative AI services and produce the best experiences for the end users in the applications."
+                    "description": "URL of the official website of the real state company or listing"
                 },
                 "category": {
                     "type": "string",
-                    "description": "Generative AI Category and the value only can be one of these: 1. Text Generation: AI tools that generate natural language text, such as chatbots, language models, and automated content creation tools. 2. Image and Video Generation: AI tools that generate images, videos, or animations, such as face-swaps, style transfer, and GANs. 3. Music and Sound Generation: AI tools that generate music, sound effects, or voice, such as AI music composers, virtual instruments, and speech synthesis. 4. Game and Virtual World Generation: AI tools that generate game content, virtual environments, or characters, such as procedural content generation, level design, and NPC creation. 5. Data and Simulation Generation: AI tools that generate synthetic data, simulate complex systems or predict future scenarios, such as predictive analytics, digital twins, and generative models for scientific research."
-                },
-                "enterprise_categories": {
-                    "type": "string",
-                    "description": "Enterprise Categories and the value is a listed, comma separated with at least one of these options: 1. Marketing: 1.1 Content Creation: Generative AI tools can help create personalized and engaging content for marketing campaigns, such as product descriptions, ad copy, and social media posts. These tools can analyze data about customer preferences, behavior, and demographics, and generate content that resonates with different segments. 1.2 Image and Video Generation: Generative AI tools can generate visual content, such as images and videos, that align with the brand style and message. These tools can apply style transfer, object detection, and other techniques to create unique and eye-catching visuals that stand out in the crowded digital landscape. 1.3 Customer Segmentation: Generative AI tools can help segment customers based on their behavior, interests, and demographics, and generate targeted marketing messages for each group. These tools can use clustering, decision trees, and other techniques to identify patterns and trends in customer data and create personalized marketing campaigns. 2. Finance: 2.1 Fraud Detection: Generative AI tools can help detect and prevent fraud in financial transactions, such as credit card fraud, money laundering, and insider trading. These tools can use anomaly detection, predictive modeling, and other techniques to identify suspicious activities and alert the relevant authorities. 2.2 Investment Strategy: Generative AI tools can help develop investment strategies that optimize risk and return based on historical data and market trends. These tools can use predictive modeling, portfolio optimization, and other techniques to generate personalized investment plans for individual clients. 2.3 Forecasting: Generative AI tools can help forecast financial performance based on historical data and external factors, such as economic indicators and industry trends. These tools can use time series analysis, regression, and other techniques to generate accurate and reliable predictions of revenue, expenses, and other financial metrics. 3. People Operations: 3.1 Talent Acquisition: Generative AI tools can help identify and attract top talent based on their skills, experience, and cultural fit. These tools can use natural language processing, sentiment analysis, and other techniques to analyze candidate resumes, cover letters, and social media profiles, and generate recommendations for recruiters. 3.2 Employee Engagement: Generative AI tools can help improve employee engagement and satisfaction by generating personalized feedback, recognition, and development plans. These tools can use sentiment analysis, personality assessments, and other techniques to understand employee preferences and generate actionable insights. 3.3 Performance Management: Generative AI tools can help optimize performance management processes by generating personalized performance metrics, goals, and feedback. These tools can use data analytics, machine learning, and other techniques to generate objective and transparent evaluations of employee performance. 4. Developer tools 5. Design tools"
-                },
-                "license": {
-                    "type": "string",
-                    "description": "Type of licensing of the AI tool, can be one of these options: 1. Open Source: Open-source licenses facilitate free and open-source software (FOSS) development. Intellectual property (IP) laws restrict the modification and sharing of creative works. Free and open-source software licenses use these existing legal structures for the inverse purpose of granting freedoms that promote sharing and collaboration. They grant the recipient the right to use the software, examine the source code, modify it, and distribute the modifications. 2. Proprietary: The hallmark of proprietary software licenses is that the software publisher grants the use of one or more copies of software under the end-user license agreement (EULA), but ownership of those copies remains with the software publisher (hence use of the term \"proprietary\"). This feature of proprietary software licenses means that certain rights regarding the software are reserved by the software publisher."
+                    "description": "Indicate wether is a company or a real state listing"
                 },
                 "description": {
                     "type": "string",
-                    "description": "A short summary that describes the AI tool, not more than 500 words"
+                    "description": "A short summary that describes the real state listing or company, not more than 500 words"
                 }
             },
             "required": [
-                "id",
                 "name",
                 "link",
-                "ecosystem",
                 "category",
-                "enterprise_categories",
-                "license",
                 "description"
             ]
         }
