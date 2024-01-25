@@ -28,38 +28,15 @@ def get_real_estate_info_by_name(name):
     return _run_query(f"SELECT * FROM ai_tools WHERE name='{name}' COLLATE NOCASE")
 
 # Function to Get the list of AI tools from the SQLite database
-def get_real_estate_listings():
+def get_real_estate_listings(location = None, bedrooms = None, bathrooms = None, basement = None, yard = None, laundry_room = None, garage = None, min_price = None, max_price = None, other_features = None):
     file = open("./applications/broker_agent/datasets/listings.json")
     data = json.load(file)
     file.close()
     return data
 
-# function to insert a new tool into te DB
-def insert_real_estate_info(name, link, category, description):
-    sql = '''INSERT INTO ai_tools (name, link, category, description, last_search) VALUES (? , ? , ? , ?  , datetime() )'''
-    
-    fields = (name, link, category, description)
-    con = sqlite3.connect(db_name)
-    cur = con.cursor()
-    cur.execute(sql, fields)
-    con.commit() 
-    con.close() 
-    return True
-
-# Function for update airtable records
-def update_real_estate_info(id, name, link, category, description):
-    sql = '''UPDATE ai_tools 
-              SET name = ? ,
-                  link = ? ,
-                  category = ? ,
-                  description = ? ,
-                  last_search = datetime()  
-              WHERE id = ?'''
-    
-    fields = (name, link, category, description, id)
-    con = sqlite3.connect(db_name)
-    cur = con.cursor()
-    cur.execute(sql, fields)
-    con.commit() 
-    con.close() 
+# Function to generate a new JSON file with the search results
+def dump_results_to_file(items = None):
+    f = open("./applications/broker_agent/datasets/results.json", "w")
+    f.write(items)
+    f.close()
     return True

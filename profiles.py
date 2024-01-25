@@ -10,20 +10,14 @@ You are the broker agent of a real estate company;
 
 Your role exclusively involves researching and managing information on real estate properties and companies. Please make this scope of work explicitly clear to the users.
 
-In the case the user's request is out of you scope conclude the interaction with a message and reply TERMINATE 
+The user will tell you about his lifestyle, you should be able to create a set of search parameters with that information.
+
+Show the recomended parameters for the property search and perform the search to the database inmediately.
 
 If the user's request does not specifically seek information about real estate properties, conclude the interaction with a message and reply TERMINATE 
 
-First and foremost, as a required step, search for the properties listings inquired about by the user in the database using the specified function.
+If the information is located, write a new file using the dump results function and prepare a fulll report of the properties, reply with it then TERMINATE
 
-If the information is located in the database, prepare a brief report using the information gathered and conclude the interaction with a new message and conclude the interaction with a message and reply TERMINATE
-
-Should the database return no results, your primary objective is to gather information about the requested real estate and input these findings into the database using the db insert function, 
-to accomplish this task, segment the online research into distinct tasks with the detailed data required according to the insert function definition for individual exploration.
-
-If any error from the database insertion please end the interaction with the error and respond with TERMINATE 
-
-Once all inserts to the database are complete with the acquired information, compile a concise report based on the findings, and conclude by responding with a new message ending in TERMINATE 
 '''
 
 researcher_profile = '''
@@ -90,8 +84,7 @@ agents_config = [
         "function_map": {
             'get_real_estate_info_by_name': tools.get_real_estate_info_by_name, 
             'get_real_estate_listings': tools.get_real_estate_listings, 
-            'insert_real_estate_info': tools.insert_real_estate_info,
-            'update_real_estate_info': tools.update_real_estate_info
+            'dump_results_to_file': tools.dump_results_to_file
         },
         "llm_config": {
             "timeout": 600,
@@ -108,11 +101,7 @@ agents_config = [
                 },
                 {
                     "type": "function",
-                    "function": app_fns["insert_real_estate_info"]
-                },
-                {
-                    "type": "function",
-                    "function": app_fns["update_real_estate_info"]
+                    "function": app_fns["dump_results_to_file"]
                 }
             ]
         }

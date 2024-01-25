@@ -15,72 +15,69 @@
     },
     "get_real_estate_listings": {
         "name": "get_real_estate_listings",
-        "description": "Get the list of real-state properties from the listings file",
+        "description": "Get the list of real estate properties from the listings file",
         "parameters": {
             "type": "object",
-            "properties": {},
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "Property location"
+                },
+                "bedrooms": {
+                    "type": "string",
+                    "description": "Number of bedrooms for the property"
+                },
+                "bathrooms": {
+                    "type": "string",
+                    "description": "Number of bedrooms for the property"
+                },
+                "basement": {
+                    "type": "string",
+                    "description": "Property basement"
+                },
+                "yard": {
+                    "type": "string",
+                    "description": "Property yard"
+                },
+                "laundry_room": {
+                    "type": "string",
+                    "description": "Property laundry room"
+                },
+                "garage": {
+                    "type": "string",
+                    "description": "Property garage"
+                },
+                "min_price": {
+                    "type": "string",
+                    "description": "A minimum price for the property",
+                    "default": 1000
+                },
+                "max_price": {
+                    "type": "string",
+                    "description": "A maximum price for the property",
+                    "default": 4000
+                },
+                "other_features": {
+                    "type": "string",
+                    "description": "Other features the user is looking for the property"
+                }
+            },
             "required": []
         }
     },
-    "insert_real_estate_info": {
-        "name": "insert_real_estate_info",
-        "description": "Insert a single record in the SQLite database",
+    "dump_results_to_file": {
+        "name": "dump_results_to_file",
+        "description": "Create a new file and dump the results",
         "parameters": {
             "type": "object",
             "properties": {
-                "name": {
+                "items": {
                     "type": "string",
-                    "description": "Name of the real state company or listing"
-                },
-                "link": {
-                    "type": "string",
-                    "description": "URL of the official website of the real state company or listing"
-                },
-                "category": {
-                    "type": "string",
-                    "description": "Indicate wether is a company or a real state listing"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "A short summary that describes the real state listing or company, not more than 500 words"
+                    "description": "The json item to dump into a file"
                 }
             },
             "required": [
-                "name",
-                "link",
-                "category",
-                "description"
-            ]
-        }
-    },
-    "update_real_estate_info": {
-        "name": "update_real_estate_info",
-        "description": "Insert a single record in the SQLite database",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "Name of the real state company or listing"
-                },
-                "link": {
-                    "type": "string",
-                    "description": "URL of the official website of the real state company or listing"
-                },
-                "category": {
-                    "type": "string",
-                    "description": "Indicate wether is a company or a real state listing"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "A short summary that describes the real state listing or company, not more than 500 words"
-                }
-            },
-            "required": [
-                "name",
-                "link",
-                "category",
-                "description"
+                "items"
             ]
         }
     }
